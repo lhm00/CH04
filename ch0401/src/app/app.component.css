@@ -1,0 +1,11 @@
+.bordered{
+    border:1px dashed black;
+    background-color: aqua;
+}
+.blue{
+  color: blueviolet;
+
+}
+.round{
+    border-radius : 5px;
+}

@@ -1,0 +1,55 @@
+<h2 *ngIf="shouldShow">是否显示</h2>
+<input type="button" value="切换" (click)="onToggle()">
+<input type="number" [value]="score" (input)="onInput($event)">
+
+<p *ngIf="score <60">不及格</p>
+<p *ngIf="score >=60 &&score<70">及格</p>
+<p *ngIf="score >=70 &&score<80">zhongdeng</p>
+<p *ngIf="score >=80 &&score<90">良好</p>
+
+<div [ngSwitch]="grade()">
+  <p *ngSwitchCase="10">满分</p>
+  <p *ngSwitchCase="9">优秀</p>
+  <p *ngSwitchCase="8">良好</p>
+  <p *ngSwitchCase="7">中等</p>
+  <p *ngSwitchCase="6">及格</p>
+  <p *ngSwitchDefault>其他</p>
+</div>
+<p [style.background-color]="'red'">直接采用style属性</p>
+<p [ngStyle]="{'background-color':'red','color':'white'}">这里采用的是ngstyle</p>
+
+<form action="">
+  <h3>动态使用</h3>
+  <div class='from-grow'>
+    <label for="ipttextsize">颜色</label>
+    <input type="text" class="form-control" id="iptColor" aria-describedby="color" placeholder="输入颜色" #colorinput>
+  </div>
+
+  <div class='from-grow'>
+  <label for="iptTextSize">字体大小</label>
+  <input type="TEXT" class="form-control" id="iptTextSize" aria-describedby="font size"placeholder="输入字体大小" #fontinput>
+</div>
+<a class="btn btn-primary" href="#" role="button" (click)="apply(colorinput.value,fontinput.value)">应用设置</a>
+
+</form>
+<div>
+  <span [ngStyle]="{color: 'red'}" [style.font-size]="fontSize">
+    red text
+  </span>
+</div>
+<div [style.background-color]="color" style="color :white">
+   {{color}}背景色
+  
+</div>
+
+
+<div [ngStyle]="{'color':'white','background-color':color,'font-size':fontSize}">
+ 使用ngstyle动态修改
+</div>
+
+<h3>使用ngclass</h3>
+  <div [ngClass]="{bordered:isBordered ,blue:false,round:true}">有边框</div>
+  <div [ngClass]="classObj">采用json对象属性方式</div>
+  <div [ngClass]="{bordered:!isBordered,blue:true}">无边框</div>
+  <div [ngClass]="['bordered','blue','round']">采用另一种方式</div>
+  <a href="#" class='btn btn-primary' (click)="toggleBorder()">切换边框</a>
